@@ -18,3 +18,12 @@
   min-height: 30vw;
   border: 2px solid blue;
 }
+
+.home__table-row:hover {
+  cursor: pointer;
+}
+
+.home__table-row_selected {
+  background-color: lightgray;
+  transition: all 0.5;
+}

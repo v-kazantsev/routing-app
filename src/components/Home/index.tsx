@@ -1,6 +1,7 @@
+import { useState } from 'react'
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectOrder } from 'store/slices/selectedOrderSlice'
 import Map from '../Map'
 import './style.css'
@@ -8,69 +9,9 @@ import './style.css'
 const Home = () => {
 
   const dispatch = useDispatch()
-
-  const dataSource: IOrder[] = [
-    {
-      key: '1',
-      number: '№1',
-      startCoordinates: {
-        lat: 59.84660399,
-        long: 30.29496392
-      },
-      endCoordinates: {
-        lat: 59.82934196,
-        long: 30.42423701
-      }
-    },
-    {
-      key: '2',
-      number: '№2',
-      startCoordinates: {
-        lat: 59.82934196,
-        long: 30.42423701
-      },
-      endCoordinates: {
-        lat: 59.82761295,
-        long: 30.41705607
-      }
-    },
-    {
-      key: '3',
-      number: '№3',
-      startCoordinates: {
-        lat: 59.83567701,
-        long: 30.38064206
-      },
-      endCoordinates: {
-        lat: 59.84660399,
-        long: 30.29496392,
-      }
-    },
-    {
-      key: '4',
-      number: '№4',
-      startCoordinates: {
-        lat: 59.84660399,
-        long: 30.29496392
-      },
-      endCoordinates: {
-        lat: 59.82761295,
-        long: 30.41705607
-      }
-    },
-    {
-      key: '5',
-      number: '№5',
-      startCoordinates: {
-        lat: 59.83567701,
-        long: 30.38064206
-      },
-      endCoordinates: {
-        lat: 59.84660399,
-        long: 30.29496392,
-      }
-    }
-  ]
+  const { orders: dataSource } = useSelector((state: any) => state.orders)
+  
+  const [selected, setSelected] = useState<number | undefined>()
 
   const columns: ColumnsType<IOrder> = [
     {
@@ -104,18 +45,27 @@ const Home = () => {
     }
   ]
 
-  const onRow = (record: IOrder) => {
+  const onRow = (record: IOrder, rowIndex: number | undefined) => {
     return {
       onClick: () => {
+        setSelected(rowIndex)
         dispatch(selectOrder(record))
       }
     }
   }
 
+  if (dataSource.length === 0) return null
+
   return (
   <div className="home">
     <div className="home__table">
-      <Table columns={columns} dataSource={dataSource} pagination={false} onRow={onRow} />
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        pagination={false}
+        onRow={onRow}
+        rowClassName={(_, index) => index === selected ? "home__table-row home__table-row_selected" : "home__table-row"}
+      />
     </div>
     <div className="home__map"><Map /></div>
   </div>
