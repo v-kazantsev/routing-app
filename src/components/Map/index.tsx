@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import Routing from './Routing'
 import './style.css'
 
 const Map = () => {
@@ -16,16 +17,12 @@ const Map = () => {
   // )
   return (
     <div className='leaflet-container'>
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+    <MapContainer center={[59.84660399, 30.29496392]} zoom={10} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      <Routing />
     </MapContainer>
     </div>
   )
