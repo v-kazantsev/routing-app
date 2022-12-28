@@ -1,10 +1,14 @@
 import React from 'react'
+import { Container, Home } from 'components'
+import Store from 'store'
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Store>
+      <Container>
+        <Home />
+      </Container>
+    </Store>
   )
 }
 

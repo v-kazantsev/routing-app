@@ -1,0 +1,20 @@
+.home {
+  display: flex;
+}
+
+.home__table {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: 0 1 40%;
+  border: 2px solid red;
+}
+
+.home__map {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 60%;
+  min-height: 30vw;
+  border: 2px solid blue;
+}
