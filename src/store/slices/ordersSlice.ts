@@ -6,7 +6,7 @@ const ordersSlice = createSlice({
     orders: [] as IOrder[]
   },
   reducers: {
-    fetchData(state, action) {
+    fetchData(state, action: PayloadAction<IOrder[]>) {
       state.orders = action.payload
     }
   }
