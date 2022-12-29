@@ -4,7 +4,7 @@ import { fetchData } from 'store/slices/ordersSlice'
 const orders = [
   {
     key: '1',
-    number: '№1',
+    number: '1',
     startCoordinates: {
       lat: 59.84660399,
       long: 30.29496392
@@ -16,7 +16,7 @@ const orders = [
   },
   {
     key: '2',
-    number: '№2',
+    number: '2',
     startCoordinates: {
       lat: 59.82934196,
       long: 30.42423701
@@ -28,7 +28,7 @@ const orders = [
   },
   {
     key: '3',
-    number: '№3',
+    number: '3',
     startCoordinates: {
       lat: 59.83567701,
       long: 30.38064206
@@ -40,7 +40,7 @@ const orders = [
   },
   {
     key: '4',
-    number: '№4',
+    number: '4',
     startCoordinates: {
       lat: 59.84660399,
       long: 30.29496392
@@ -52,7 +52,7 @@ const orders = [
   },
   {
     key: '5',
-    number: '№5',
+    number: '5',
     startCoordinates: {
       lat: 59.83567701,
       long: 30.38064206

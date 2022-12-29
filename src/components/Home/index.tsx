@@ -17,7 +17,8 @@ const Home = () => {
     {
       title: 'Номер заявки',
       dataIndex: 'number',
-      key: 'number'
+      key: 'number',
+      render: ({ number }) => <span>`№{number}`</span>
     },
     {
       title: 'Координаты ОТ lat',

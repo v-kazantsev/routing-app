@@ -12,12 +12,14 @@ import {
 import storage from 'redux-persist/lib/storage'
 import { reducer as selectedOrder } from './slices/selectedOrderSlice'
 import { reducer as orders } from './slices/ordersSlice'
+import { reducer as route } from './slices/routeSlice'
 import createSagaMiddleware from '@redux-saga/core'
 import rootSaga from './sagas/rootSaga'
 
 const rootReducer = combineReducers({
   selectedOrder,
-  orders
+  orders,
+  route
 })
 
 const persistConfig = {
