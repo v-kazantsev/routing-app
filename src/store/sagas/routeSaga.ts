@@ -1,10 +1,10 @@
 // @ts-nocheck
-import { call, put, take } from '@redux-saga/core/effects'
+import { call, put, takeLatest } from '@redux-saga/core/effects'
 import { routeCreated } from '../slices/routeSlice'
 import fetchRoute from 'api/fetchRoute'
+import { selectOrder } from '../slices/selectedOrderSlice'
 
-
-function* findRoute(payload) {
+function* findRoute({ payload }) {
   const { startCoordinates, endCoordinates } = payload
   try {
     const data = yield call(fetchRoute, {startCoordinates, endCoordinates})
@@ -15,9 +15,6 @@ function* findRoute(payload) {
 }
 
 export default function* watchOrderSelected() {
-  while(true) {
-    const { payload } = yield take('selectedOrder/selectOrder')
-    yield call(findRoute, payload)
-  }
+    yield takeLatest(selectOrder.type, findRoute)
 }
 

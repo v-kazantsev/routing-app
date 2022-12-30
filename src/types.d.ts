@@ -9,3 +9,5 @@ declare interface IOrder {
   startCoordinates: Coordinates
   endCoordinates: Coordinates
 }
+
+declare type Waypoints = Array<[number]>

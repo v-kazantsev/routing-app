@@ -1,4 +1,4 @@
-import { call } from '@redux-saga/core/effects'
+import { put } from '@redux-saga/core/effects'
 import { fetchData } from 'store/slices/ordersSlice'
 
 const orders = [
@@ -65,5 +65,5 @@ const orders = [
 ]
 
 export default function* populateOrders() {
-  yield call(fetchData, orders)
+  yield put(fetchData(orders))
 }

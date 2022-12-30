@@ -18,7 +18,7 @@ const Home = () => {
       title: 'Номер заявки',
       dataIndex: 'number',
       key: 'number',
-      render: ({ number }) => <span>`№{number}`</span>
+      render: (number) => <span>{`№${number}`}</span>
     },
     {
       title: 'Координаты ОТ lat',
@@ -56,7 +56,6 @@ const Home = () => {
   }
 
   if (dataSource.length === 0) return null
-
   return (
   <div className="home">
     <div className="home__table">
