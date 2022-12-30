@@ -11,6 +11,8 @@ import { LatLngExpression } from 'leaflet'
 const Map = () => {
   const selectedOrder = useSelector(selectedOrderSelector)
   const { startCoordinates, endCoordinates } = selectedOrder
+  const startPoint = [startCoordinates?.lat, startCoordinates?.long]
+  const endPoint = [endCoordinates?.lat, endCoordinates?.long] 
   const route = useSelector(routeSelector)
   const waypoints = useMemo(() => {
     if (isEmpty(route)) return [] as LatLngExpression[]
@@ -18,18 +20,18 @@ const Map = () => {
      return [...acc, [item[1], item[0]]]
     }, [] as LatLngExpression[])
   }, [route])
-  if (isEmpty(selectedOrder)) return <MapPlaceholder />
+  if (isEmpty(selectedOrder) || !startCoordinates || !endCoordinates) return <MapPlaceholder />
   return (
     <div className='leaflet-container'>
-    <MapContainer center={[startCoordinates?.lat, startCoordinates?.long]} zoom={11} scrollWheelZoom={false}>
+    <MapContainer center={startPoint} zoom={11} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[startCoordinates?.lat, startCoordinates?.long]} />
-      <Marker position={[endCoordinates?.lat, endCoordinates?.long]} />
+      <Marker position={startPoint} />
+      <Marker position={endPoint} />
       <Polyline color={"cyan"} weight={4} positions={waypoints} />
-      <AutoFit bounds={[[startCoordinates?.lat, startCoordinates?.long], [endCoordinates?.lat, endCoordinates?.long]]} />
+      <AutoFit bounds={[startPoint, endPoint]} />
     </MapContainer>
     </div>
   )
