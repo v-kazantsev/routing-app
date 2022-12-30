@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectOrder } from 'store/slices/selectedOrderSlice'
-import { ordersSelector } from 'store/selectors'
+import { ordersSelector, selectedOrderSelector } from 'store/selectors'
 import Map from '../Map'
 import './style.css'
 
@@ -11,8 +10,7 @@ const Home = () => {
 
   const dispatch = useDispatch()
   const dataSource = useSelector(ordersSelector)
-  
-  const [selected, setSelected] = useState<number | undefined>()
+  const { number: orderNumber } = useSelector(selectedOrderSelector)
 
   const columns: ColumnsType<IOrder> = [
     {
@@ -47,10 +45,9 @@ const Home = () => {
     }
   ]
 
-  const onRow = (record: IOrder, rowIndex: number | undefined) => {
+  const onRow = (record: IOrder) => {
     return {
       onClick: () => {
-        setSelected(rowIndex)
         dispatch(selectOrder(record))
       }
     }
@@ -65,7 +62,7 @@ const Home = () => {
         dataSource={dataSource}
         pagination={false}
         onRow={onRow}
-        rowClassName={(_, index) => index === selected ? "home__table-row home__table-row_selected" : "home__table-row"}
+        rowClassName={record => record?.number === orderNumber ? "home__table-row home__table-row_selected" : "home__table-row"}
       />
     </div>
     <div className="home__map"><Map /></div>

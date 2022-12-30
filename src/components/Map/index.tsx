@@ -6,16 +6,17 @@ import isEmpty from 'lodash/isEmpty'
 import { MapPlaceholder, AutoFit } from 'components'
 import { routeSelector, selectedOrderSelector } from 'store/selectors'
 import './style.css'
+import { LatLngExpression } from 'leaflet'
 
 const Map = () => {
   const selectedOrder = useSelector(selectedOrderSelector)
   const { startCoordinates, endCoordinates } = selectedOrder
   const route = useSelector(routeSelector)
   const waypoints = useMemo(() => {
-    if (isEmpty(route)) return [] as Waypoints
-    return route.reduce((acc: Waypoints, item: Waypoints) => {
+    if (isEmpty(route)) return [] as LatLngExpression[]
+    return route.reduce((acc, item: Waypoints) => {
      return [...acc, [item[1], item[0]]]
-    }, [])
+    }, [] as LatLngExpression[])
   }, [route])
   if (isEmpty(selectedOrder)) return <MapPlaceholder />
   return (

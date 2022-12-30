@@ -25,3 +25,9 @@
   background-color: lightgray;
   transition: all 0.5;
 }
+
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+  }
+}
