@@ -3,13 +3,14 @@ import { Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectOrder } from 'store/slices/selectedOrderSlice'
+import { ordersSelector } from 'store/selectors'
 import Map from '../Map'
 import './style.css'
 
 const Home = () => {
 
   const dispatch = useDispatch()
-  const { orders: dataSource } = useSelector((state: any) => state.orders)
+  const dataSource = useSelector(ordersSelector)
   
   const [selected, setSelected] = useState<number | undefined>()
 

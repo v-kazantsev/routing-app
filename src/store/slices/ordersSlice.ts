@@ -1,10 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+type OrdersState = {
+  orders: IOrder[]
+}
+
+export interface OrdersSliceState {
+  orders: OrdersState
+}
+
+const initialState: OrdersState = {
+  orders: []
+}
+
 const ordersSlice = createSlice({
   name: 'orders',
-  initialState: {
-    orders: [] as IOrder[]
-  },
+  initialState,
   reducers: {
     fetchData(state, action: PayloadAction<IOrder[]>) {
       state.orders = action.payload

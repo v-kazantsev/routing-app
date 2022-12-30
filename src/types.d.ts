@@ -10,4 +10,17 @@ declare interface IOrder {
   endCoordinates: Coordinates
 }
 
-declare type Waypoints = Array<[number]>
+declare type Waypoints = Array<[LatLngExpression]>
+
+interface Geometry {
+  type: string
+  coordinates: Waypoints
+}
+
+type IRoutes = {
+  routes: [Geometry]
+}
+
+declare interface IRawRoute {
+  route: [IRoutes]
+}

@@ -10,4 +10,5 @@ export default function fetchRoute({
 }: IParams) {
   return fetch(`${API_URL}/${startCoordinates.long},${startCoordinates.lat};${endCoordinates.long},${endCoordinates.lat}?steps=true&geometries=geojson&overview=full`)
   .then(res => res.json())
+  .then(route => route.routes[0].geometry.coordinates)
 }

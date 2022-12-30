@@ -1,10 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+type OrderState = {
+  selectedOrder: IOrder
+}
+
+export interface SelectedOrderSliceState {
+  selectedOrder: OrderState
+}
+
+const initialState: OrderState = {
+  selectedOrder: {} as IOrder
+}
+
 const selectedOrderSlice = createSlice({
   name: 'selectedOrder',
-  initialState: {
-    selectedOrder: {} as IOrder
-  },
+  initialState,
   reducers: {
     selectOrder(state, action: PayloadAction<IOrder>) {
       state.selectedOrder = action.payload
